@@ -12,6 +12,7 @@ public class Delivery : MonoBehaviour
 
     void Start()
     {
+        // Assign the sprite renderer to the sprite linked to this script
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -22,6 +23,8 @@ public class Delivery : MonoBehaviour
             Debug.Log("Package picked up");
             hasPackage = true;
             spriteRenderer.color = hasPackageColor;
+
+            // Destroy the package (with a slight delay) so it can't be picked up again
             Destroy(other.gameObject, packageDestructionDelay);
         }
         else if (other.tag == "Customer" && hasPackage)

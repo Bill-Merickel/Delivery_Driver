@@ -11,6 +11,7 @@ public class Driver : MonoBehaviour
 
     void Update()
     {
+        // Utilize Time.deltaTime so that driver moves the same speed across all computers regardless of framerate
         float steerAmount = Input.GetAxis("Horizontal") * steerSpeed * Time.deltaTime;
         float moveAmount = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
         transform.Rotate(0, 0, -steerAmount);
@@ -19,6 +20,7 @@ public class Driver : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Boost the driver speed if it runs over a boost trigger
         if (other.tag == "Boost")
         {
             Debug.Log("Boost!");
@@ -28,6 +30,7 @@ public class Driver : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        // Slow down the driver if it collides with an obstacle
         if (other.gameObject.tag == "Bump")
         {
             Debug.Log("Bump!");
